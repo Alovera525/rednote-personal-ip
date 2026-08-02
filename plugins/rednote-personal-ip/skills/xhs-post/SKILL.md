@@ -200,6 +200,8 @@ description: Write RedNote or Xiaohongshu personal-IP titles, body copy, hashtag
 
 最快的检测方法是**朗读一遍**：读起来不像在说话的地方就是 AI 腔。最本质的一条是**加无法编造的细节** ——「我妈说了一句'你自己看着办'」比「家人不太支持」强十倍。
 
+用户要「标题 + 正文」或「完整笔记」时，再读 `references/content-diagnosis.md`，在最终交付后附上基于**当前已确认素材与当前稿**的内容成长诊断。它用于告诉用户下一版最值得补什么，不预测流量、不对用户本人下定论；只要标题、只改一句、短改写等轻量任务不要附诊断，避免拖慢交付。
+
 标题、标签、评论区引导三样每种形态都要，正文按形态走：
 
 ```
@@ -209,8 +211,13 @@ description: Write RedNote or Xiaohongshu personal-IP titles, body copy, hashtag
    长图轮播   → 只写 3-5 句引导语（图里已经讲完了，正文再重复一遍很啰嗦），
                 另外单独给出每一页的文字内容
    照片型     → 100-300 字，配合照片说，不要脱离画面自说自话
-【标签】3-10 个，分三层（大词 / 精准词 / 个人IP词），算进正文字数
+【Hashtags】必须显式按下面三层展示，合计 3-10 个并算进正文字数：
+   - 大词（2-3）：#… #…
+   - 精准词（3-4）：#… #…
+   - 个人 IP / 栏目词（1-2）：#… #…
+   没有已确认账号名时，用可持续经营的栏目词，不伪造账号名或人设称呼。
 【评论区】1 条置顶引导语（引导评论是权重最高的互动信号）
+【内容成长诊断】按 `references/content-diagnosis.md` 输出当前稿评分、缺口与下一版补强方向
 ```
 
 ### 第 4 步：确认是否制作封面
@@ -294,7 +301,8 @@ description: Write RedNote or Xiaohongshu personal-IP titles, body copy, hashtag
 - `references/copywriting.md` — **发布类型与硬规则**、怎么选发布类型、发布节奏、**去 AI 腔**、标题公式、正文结构模板、标签策略、违禁词表。定发布类型和写文案前读。
 - `references/voice.md` — 声音档案怎么建、存什么、怎么靠改稿 diff 迭代。建档时和收到用户改稿时读。
 - `references/style-archetypes.md` — 12 种跨行业风格母型、行业映射、情感 / 学生提醒、空泛输入补强和风格 DNA；新号快速创作时从中组成 3 个含推荐的「IP 风格 + 口气」选项。首次定风格或输入空泛时读。
-- `references/output-delivery.md` — 本篇创作设定、自然段、emoji / 颜文字，以及默认直接输出、按需 `.md` / `.txt` 的聊天交付。完整笔记时读。
+- `references/output-delivery.md` — 本篇创作设定、自然段、emoji / 颜文字、显式三层 Hashtag，以及默认直接输出、按需 `.md` / `.txt` 的聊天交付。完整笔记时读。
+- `references/content-diagnosis.md` — 当前完整笔记的 7 维内容成长诊断：评分依据、分档、按内容类型补强和个人风格辨识度。只在交付标题 + 正文或完整笔记时读。
 - `references/human-longform.md` — 高人感长文的标题、叙事引擎、正文骨架、网感与真实性边界。只在人物故事、品牌 / 项目、文化评论、PLOG、关系或阶段性长文时读。
 - `references/growth.md` — 主页装修、冷启动前 10 条、发布当天操作、发布后数据诊断、爆款延伸、评论区挖选题。做账号级决策和用户拿数据来问时读。
 - `references/covers.md` — 封面款式的适用场景、长图轮播的排版顺序、渲染方法（含代码）、AI 生图 prompt 模板。做图前读。

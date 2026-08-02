@@ -4,7 +4,7 @@
 
 它不是一套“万能爆款句式”。它把创作拆成可以重复执行的判断流程：先理解账号和用户手里的素材，再决定发布类型、内容形态、文案和视觉；发布后只改数据真正掉下去的环节。
 
-> 当前版本：`0.1.7` · 作者：VeraQ · 许可证：MIT
+> 当前版本：`0.1.8` · 作者：VeraQ · 许可证：MIT
 
 ## 功能入口
 
@@ -71,9 +71,11 @@
 
 ### 可复制的聊天交付
 
-完整笔记默认直接在聊天中输出可发布文案：标题、正文、hashtags 和置顶评论。用户明确说“给我 `.md`”或“给我 `.txt`”时，才改为相应格式；插件不生成附件，也不附带程序或文件导出器。
+完整笔记默认直接在聊天中输出可发布文案：标题、正文、按“大词 / 精准词 / 个人 IP（或栏目）词”显式分层的 hashtags，以及置顶评论。用户明确说“给我 `.md`”或“给我 `.txt`”时，才改为相应格式；插件不生成附件，也不附带程序或文件导出器。
 
 正文不再按固定句数换行。Skill 会先确定核心结论，再按干货、故事、观点、复盘、测评或文化评论的逻辑链组织内容；只有观点、场景、证据、行动阶段或转折变化时才分段。人物故事、项目复盘与随笔会先补身份、触发、拉扯、选择与回声等真实材料，避免把抽象感悟写成空泛长文；故事可自然升华，但领悟必须来自前文的具体选择与变化，不能强行鸡汤式总结。
+
+每篇完整笔记还会附一份“内容成长诊断”（35 分）：真实锚点、个人位置、冲突与变化、内容价值、结构与节奏、人感与网感、个人风格辨识度。它只基于本次确认的材料与当前稿指出缺口，并给出下一版可补的事实、场景或表达习惯；不预测流量，也不对用户本人下判断。只要标题或短改写不会附这份诊断。
 
 ### 空泛输入补强
 
@@ -128,8 +130,6 @@ claude plugin install rednote-personal-ip@rednote-skills
 
 Claude Code 会给 Marketplace Plugin 的 Skill 加命名空间，因此实际命令不是裸 `/xhs-post`，而是 `/rednote-personal-ip:xhs-post`。这可以防止不同插件里的同名 Skill 冲突。
 
-第三方 Marketplace 默认不会自动更新。首次安装后运行 `/plugin`，进入 **Marketplaces → rednote-skills**，选择 **Enable auto-update**。之后 Claude Code 会在启动时刷新 Marketplace；版本变化时自动更新已安装插件，并提示运行 `/reload-plugins`。
-
 ### Codex
 
 ```bash
@@ -149,13 +149,6 @@ codex plugin add rednote-personal-ip@rednote-skills
 
 ```text
 @rednote-personal-ip 曝光 12000、阅读 530、点赞 18、收藏 41、评论 2、涨粉 0；标题是“……”，封面是“……”。按曝光、阅读、互动、关注四段判断问题，并给下一条最优先的一项改法。
-```
-
-Codex 的 Git Marketplace 当前需要手动刷新快照并重新安装最新版本：
-
-```bash
-codex plugin marketplace upgrade rednote-skills
-codex plugin add rednote-personal-ip@rednote-skills
 ```
 
 ## 仓库结构
@@ -222,8 +215,26 @@ Skill 可能在当前工作目录读取或创建 `ip-profile.md` 与 `voice-prof
 
 ### 用户更新
 
-- **Claude Code**：为 `rednote-skills` 开启一次 auto-update 后，启动时会检查版本变化并自动更新。
-- **Codex Git Marketplace**：运行 `codex plugin marketplace upgrade rednote-skills`，再运行 `codex plugin add rednote-personal-ip@rednote-skills`。当前 Codex CLI 没有第三方 Git Marketplace 的后台自动更新开关。
+不同平台的更新方式不同：Claude Code 可以由用户开启自动更新；Codex 的第三方 Git Marketplace 目前需要手动刷新。更新不会影响你的声音档案或已完成的笔记。
+
+#### Claude Code：首次开启后自动更新
+
+1. 在 Claude Code 输入 `/plugin`。
+2. 进入 **Marketplaces → rednote-skills**。
+3. 选择 **Enable auto-update**。
+
+之后 Claude Code 会在启动时检查新版本；收到更新提示后运行 `/reload-plugins`，再开启新的对话即可使用最新版。
+
+#### Codex：手动刷新最新版本
+
+Codex 目前没有可由本插件替用户开启的第三方 Git Marketplace 后台自动更新。需要更新时，在终端复制运行：
+
+```bash
+codex plugin marketplace upgrade rednote-skills
+codex plugin add rednote-personal-ip@rednote-skills
+```
+
+完成后开启一个新的 Codex 任务。第一条命令刷新 Marketplace 快照，第二条命令让已安装的插件使用最新版本。
 
 ### 发布新版本
 

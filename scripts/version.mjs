@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// 仅供 VeraQ 在发布插件新版本时使用；普通用户无需运行。
 
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
