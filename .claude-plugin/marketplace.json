@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "rednote-skills",
   "description": "VeraQ 的小红书 / RedNote 内容创作插件市场",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "owner": {
     "name": "VeraQ"
   },
@@ -11,7 +11,7 @@
       "name": "rednote-personal-ip",
       "source": "./plugins/rednote-personal-ip",
       "description": "小红书 / RedNote 个人 IP 内容工作台：人设定位、文案、封面、声音档案、发布合规和数据诊断。",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "author": {
         "name": "VeraQ"
       },
