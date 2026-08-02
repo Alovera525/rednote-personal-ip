@@ -109,6 +109,8 @@
 
 ### Claude Code
 
+> **第一次使用 Claude Code？** 请先按 [Claude Code 官方安装与登录指南](https://docs.anthropic.com/en/docs/claude-code/setup) 完成安装，再回到这里执行下方插件安装命令。
+
 ```bash
 claude plugin marketplace add Alovera525/rednote-personal-ip
 claude plugin install rednote-personal-ip@rednote-skills
