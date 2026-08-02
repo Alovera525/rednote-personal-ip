@@ -1,0 +1,19 @@
+{
+  "name": "rednote-personal-ip",
+  "version": "0.1.0",
+  "description": "小红书 / RedNote 个人 IP 内容工作台：人设定位、文案、封面(9版式×7风格)、声音档案、发布合规、数据诊断。带 /xhs 系列快捷键。",
+  "author": {
+    "name": "VeraQ"
+  },
+  "license": "MIT",
+  "keywords": [
+    "小红书",
+    "rednote",
+    "xiaohongshu",
+    "个人IP",
+    "封面",
+    "文案",
+    "涨粉",
+    "博主"
+  ]
+}

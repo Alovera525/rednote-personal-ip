@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<!--
+  小红书封面模板 · 6 种常用款式
+  尺寸 1242×1656 (3:4)。渲染方法见 references/covers.md。
+
+  改配色：只改下面 :root 里的变量。
+  切换款式：把 <body> 的 class 改成
+    封面 6 款 style-poster / style-memo / style-checklist
+              / style-quote / style-contrast / style-photocard
+    内页 3 款 style-page-point / style-page-quote / style-page-end
+              （长图轮播型笔记的图2~图9 用这三款，见 references/covers.md）
+  改文字：直接改 body 里对应 section 的内容。用不到的 section 留着不影响渲染。
+-->
+<style>
+:root{
+  /* ── 配色：换账号主色改这里 ── */
+  --bg:        #FAF7F2;   /* 底色 */
+  --ink:       #1A1A1A;   /* 主文字 */
+  --ink-soft:  #6B6560;   /* 次要文字 */
+  --accent:    #E8604C;   /* 点缀色：小红书原生感偏珊瑚红/橘 */
+  --accent-2:  #F5E6D3;   /* 浅色块 */
+  --line:      #E2DBD1;
+  --bg2:       #EFE9DF;   /* memo/quote 的外底色 */
+  --paper-card:#FDFBF7;   /* 纸质卡片 */
+  --marker:    #FBD97D;   /* 荧光笔 */
+  --on-accent: #FFFFFF;   /* 压在主色块上的文字 */
+  --on-accent-2:rgba(255,255,255,.85);
+  --radius:    16px;
+
+  /* ── 字体 ── */
+  --font-sans: "Noto Sans CJK SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --font-serif:"Noto Serif CJK SC","Source Han Serif SC","Songti SC",serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1242px;height:1656px;}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--ink);
+  overflow:hidden;
+  position:relative;
+  -webkit-font-smoothing:antialiased;
+}
+/* 安全区：四周 90px，底部多留 130px（小红书 UI 会压住底部） */
+.frame{
+  position:absolute; inset:0;
+  padding:100px 90px 150px;
+  display:flex; flex-direction:column;
+}
+section{display:none; width:100%; height:100%;}
+body.style-poster     #poster,
+body.style-memo       #memo,
+body.style-checklist  #checklist,
+body.style-quote      #quote,
+body.style-contrast   #contrast,
+body.style-photocard  #photocard,
+body.style-page-point #page-point,
+body.style-page-quote #page-quote,
+body.style-page-end   #page-end{display:flex; flex-direction:column;}
+
+/* ══════════ 1. 大字报 poster ══════════
+   适用：干货、观点、反常识。缩略图下辨识度最高的一种。 */
+body.style-poster{background:var(--accent);}
+#poster .mid{flex:1; display:flex; flex-direction:column; justify-content:center;}
+#poster .eyebrow{
+  font-size:44px; font-weight:500; letter-spacing:.12em;
+  color:var(--on-accent-2); margin-bottom:52px;
+}
+#poster .title{
+  font-size:150px; font-weight:900; line-height:1.22;
+  color:var(--on-accent); letter-spacing:-.01em;
+}
+#poster .title .hl{
+  background:var(--on-accent); color:var(--accent);
+  padding:0 18px; border-radius:calc(var(--radius)*.6); display:inline-block;
+  margin:6px 0;
+}
+#poster .sub{
+  margin-top:64px; font-size:50px; font-weight:400; line-height:1.6;
+  color:var(--on-accent-2);
+}
+#poster .badge{
+  align-self:flex-start;
+  font-size:40px; color:var(--on-accent-2);
+  border-top:3px solid var(--on-accent-2); padding-top:28px;
+}
+
+/* ══════════ 2. 便签手账 memo ══════════
+   适用：学生、日常记录、经历分享。亲和力最强。 */
+body.style-memo{background:var(--bg2);}
+#memo{justify-content:center; align-items:center;}
+#memo .paper{
+  width:100%; background:var(--paper-card); border-radius:var(--radius);
+  padding:110px 80px; position:relative;
+  box-shadow:0 24px 60px rgba(90,74,58,.14);
+}
+#memo .tape{
+  position:absolute; top:-34px; left:50%; transform:translateX(-50%) rotate(-2.5deg);
+  width:260px; height:70px; background:rgba(232,201,155,.72);
+  border-left:2px dashed rgba(255,255,255,.6); border-right:2px dashed rgba(255,255,255,.6);
+}
+#memo .date{
+  font-size:38px; color:var(--ink-soft); letter-spacing:.1em; margin-bottom:44px;
+}
+#memo .title{
+  font-size:112px; font-weight:800; line-height:1.34;
+}
+#memo .title u{
+  text-decoration:none;
+  background:linear-gradient(transparent 62%, var(--marker) 62%);
+}
+#memo .lines{margin-top:60px;}
+#memo .lines li{
+  list-style:none; font-size:46px; color:var(--ink-soft);
+  line-height:2.1; border-bottom:2px solid var(--line);
+}
+#memo .sign{
+  margin-top:70px; text-align:right; font-size:40px; color:var(--ink-soft);
+}
+
+/* ══════════ 3. 清单目录 checklist ══════════
+   适用：干货合集、教程、"收藏这一篇就够"。收藏率最高。 */
+#checklist{}
+#checklist .kicker{
+  display:inline-block; align-self:flex-start;
+  background:var(--accent); color:#fff;
+  font-size:38px; font-weight:700; letter-spacing:.08em;
+  padding:14px 30px; border-radius:999px; margin-bottom:46px; color:var(--on-accent);
+}
+#checklist .title{font-size:104px; font-weight:900; line-height:1.28;}
+#checklist .title em{font-style:normal; color:var(--accent);}
+#checklist ol{margin-top:70px; counter-reset:c;}
+#checklist ol li{
+  list-style:none; counter-increment:c;
+  display:flex; align-items:flex-start; gap:32px;
+  padding:34px 0; border-bottom:2px solid var(--line);
+  font-size:52px; font-weight:600; line-height:1.4;
+}
+#checklist ol li::before{
+  content:counter(c,decimal-leading-zero);
+  font-size:46px; font-weight:800; color:var(--accent);
+  flex:none; padding-top:4px; font-variant-numeric:tabular-nums;
+}
+#checklist .foot{
+  margin-top:auto; font-size:42px; color:var(--ink-soft);
+}
+
+/* ══════════ 4. 语录 quote ══════════
+   适用：情感、心理、人生感悟。靠留白和衬线体出气质。 */
+body.style-quote{background:var(--bg2);}
+#quote{justify-content:center; text-align:left;}
+#quote .mark{
+  font-family:var(--font-serif); font-size:200px; line-height:.7;
+  color:var(--accent); opacity:.28; margin-bottom:36px;
+}
+#quote .text{
+  font-family:var(--font-serif); font-size:104px; font-weight:600;
+  line-height:1.72; letter-spacing:.02em;
+}
+#quote .text .em{
+  color:var(--accent);
+  border-bottom:6px solid rgba(232,96,76,.28);
+}
+#quote .from{
+  margin-top:80px; font-size:42px; color:var(--ink-soft); letter-spacing:.06em;
+}
+#quote .from::before{
+  content:""; display:inline-block; width:70px; height:2px;
+  background:var(--ink-soft); vertical-align:middle; margin-right:24px;
+}
+
+/* ══════════ 5. 对比 contrast ══════════
+   适用：避坑、纠错、教程前后对比。信息密度高，点击率稳。 */
+#contrast .title{
+  font-size:96px; font-weight:900; line-height:1.26; margin-bottom:56px;
+}
+#contrast .cols{flex:1; display:flex; flex-direction:column; gap:34px;}
+#contrast .col{
+  flex:1; border-radius:var(--radius); padding:52px 48px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+#contrast .col.bad{background:#F1E4E1; border:4px solid #DFB9B1;}
+#contrast .col.good{background:#E3EDE4; border:4px solid #A9C7AE;}
+#contrast .col .tag{
+  font-size:46px; font-weight:800; margin-bottom:26px; display:flex; align-items:center; gap:16px;
+}
+#contrast .col.bad .tag{color:#B4453A;}
+#contrast .col.good .tag{color:#37764A;}
+#contrast .col p{font-size:52px; font-weight:600; line-height:1.52;}
+#contrast .col small{
+  display:block; margin-top:22px; font-size:38px;
+  font-weight:400; color:var(--ink-soft); line-height:1.5;
+}
+#contrast .foot{margin-top:44px; font-size:42px; color:var(--ink-soft);}
+
+/* ══════════ 6. 照片 + 文字卡 photocard ══════════
+   适用：生活、穿搭、探店、旅行。把 --photo 换成你的图片。 */
+body.style-photocard{background:#2A2622;}
+/* fixed 定位是为了跳出 .frame 的安全区留白，让照片铺满整张图 */
+#photocard{padding:0; position:fixed; inset:0;}
+#photocard .photo{
+  position:absolute; inset:0;
+  /* 换成 url('your-photo.jpg') —— 没有图时用渐变占位 */
+  background:var(--photo, linear-gradient(150deg,#C9A98B,#8F7A66 55%,#5C4E42));
+  background-size:cover; background-position:center;
+}
+#photocard .shade{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,0) 34%,rgba(0,0,0,.62) 100%);
+}
+#photocard .card{
+  position:absolute; left:90px; right:90px; bottom:190px;
+  background:rgba(255,255,255,.94); border-radius:20px;
+  padding:64px 56px;
+}
+#photocard .card .cat{
+  font-size:38px; font-weight:700; color:var(--accent);
+  letter-spacing:.1em; margin-bottom:26px;
+}
+#photocard .card .title{font-size:96px; font-weight:900; line-height:1.28;}
+#photocard .card .sub{
+  margin-top:30px; font-size:46px; color:var(--ink-soft); line-height:1.5;
+}
+#photocard .top{
+  position:absolute; top:100px; left:90px;
+  font-size:42px; font-weight:600; color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.4);
+}
+
+/* ═══════════════════════════════════════════════
+   内页模板：长图轮播型笔记的图2~图9
+   内页字号整体比封面小一档 —— 封面靠缩略图抢点击，
+   内页是点进来后全屏看的，可以承载更多信息。
+   ═══════════════════════════════════════════════ */
+
+/* ── 内页 A：分点页 page-point ──
+   轮播的主力页型，一页讲一个点，别塞两个。 */
+#page-point .num{
+  font-size:120px; font-weight:900; color:var(--accent);
+  line-height:1; font-variant-numeric:tabular-nums; margin-bottom:20px;
+}
+#page-point .h{
+  font-size:82px; font-weight:900; line-height:1.32; margin-bottom:44px;
+}
+#page-point .h .hl{
+  background:linear-gradient(transparent 60%, var(--accent-2) 60%);
+}
+#page-point .body{
+  font-size:48px; line-height:1.86; color:#3D3833;
+}
+#page-point .body p{margin-bottom:32px;}
+#page-point .note{
+  margin-top:44px; padding:36px 40px;
+  background:var(--accent-2); border-radius:var(--radius);
+  font-size:44px; line-height:1.7; color:#5A4A38;
+}
+#page-point .pager{
+  margin-top:auto; display:flex; justify-content:space-between;
+  align-items:center; font-size:38px; color:var(--ink-soft);
+}
+
+/* ── 内页 B：金句页 page-quote ──
+   用来做过渡和强调，一整页只放一句话。
+   轮播里穿插 1-2 页，节奏才不会闷。 */
+body.style-page-quote{background:var(--bg2);}
+#page-quote{justify-content:center;}
+#page-quote .big{
+  font-size:96px; font-weight:900; line-height:1.6;
+}
+#page-quote .big .em{color:var(--accent);}
+#page-quote .sub{
+  margin-top:56px; font-size:46px; line-height:1.7; color:var(--ink-soft);
+}
+
+/* ── 内页 C：结尾页 page-end ──
+   最后一页，只做两件事：把话收住 + 给一个明确的互动动作。 */
+#page-end{justify-content:center;}
+#page-end .cap{
+  font-size:40px; letter-spacing:.14em; color:var(--accent);
+  font-weight:700; margin-bottom:40px;
+}
+#page-end .sum{
+  font-size:76px; font-weight:900; line-height:1.44; margin-bottom:56px;
+}
+#page-end .list{margin-bottom:64px;}
+#page-end .list li{
+  list-style:none; font-size:48px; line-height:1.8; color:#3D3833;
+  padding-left:44px; position:relative;
+}
+#page-end .list li::before{
+  content:"›"; position:absolute; left:0; color:var(--accent); font-weight:900;
+}
+#page-end .ask{
+  padding:44px 44px; border:4px solid var(--accent); border-radius:18px;
+  font-size:52px; font-weight:700; line-height:1.5; color:var(--accent);
+}
+#page-end .who{
+  margin-top:auto; padding-top:40px; border-top:3px solid var(--line);
+  font-size:40px; color:var(--ink-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   风格主题层 —— 和版式解耦，两个 class 叠加使用
+     <body class="style-poster theme-editorial">
+   版式管信息怎么排，主题管这张图是什么调性。
+   主题只改变量和装饰，不动版式结构，所以 9 版式 × 7 主题都能用。
+   不写 theme-* 时就是默认的小红书原生米白风。
+   ═══════════════════════════════════════════════════════════ */
+
+/* ① 杂志感 editorial —— 冷静有格调，适合专业专家、观点类。
+      特征：纯白、衬线大标题、黑色横线分隔、零圆角。 */
+body.theme-editorial{
+  --bg:#FFFFFF; --bg2:#F6F4EF; --paper-card:#FFFFFF;
+  --ink:#0F0F0F; --ink-soft:#595752; --accent:#0F0F0F; --accent-2:#EDEAE3;
+  --marker:#E4E0D6; --line:#0F0F0F; --on-accent:#FFFFFF; --on-accent-2:rgba(255,255,255,.8);
+  --radius:0px;
+  --font-sans:"Noto Serif CJK SC",serif;
+}
+body.theme-editorial .frame::before{
+  content:""; position:absolute; left:90px; right:90px; top:56px; height:6px; background:var(--ink);
+}
+body.theme-editorial .frame::after{
+  content:""; position:absolute; left:90px; right:90px; bottom:108px; height:2px; background:var(--ink);
+}
+body.theme-editorial #memo .paper{box-shadow:none; border:3px solid var(--ink);}
+/* 杂志感的大字报走反相：象牙白底 + 黑衬线大字，而不是纯色铺满 */
+body.theme-editorial.style-poster{background:var(--bg2);}
+body.theme-editorial #poster .title{color:var(--ink);}
+body.theme-editorial #poster .title .hl{background:var(--ink); color:var(--bg);}
+body.theme-editorial #poster .eyebrow,
+body.theme-editorial #poster .sub{color:var(--ink-soft);}
+body.theme-editorial #poster .badge{color:var(--ink-soft); border-top-color:var(--ink);}
+
+/* ② 胶片复古 retro —— 暖调做旧，适合经历记录、生活类。
+      特征：芥末黄+砖红、颗粒噪点、双层描边。 */
+body.theme-retro{
+  --bg:#E7DAB9; --bg2:#DCCCA5; --paper-card:#F3E9CF;
+  --ink:#3A2C1B; --ink-soft:#7B6949; --accent:#B4502C; --accent-2:#E6D2A8;
+  --marker:#DDA94E; --line:#BCA57C; --on-accent:#F6EDD8; --on-accent-2:rgba(246,237,216,.82);
+  --radius:6px;
+}
+body.theme-retro .frame{box-shadow:inset 0 0 0 7px var(--ink), inset 0 0 0 15px transparent;}
+body.theme-retro::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:99; opacity:.30;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ③ 极简黑白 mono —— 最不像模板的一款，适合观点、反常识、态度类。
+      特征：只有黑白、超大字重、零装饰。缩略图辨识度极高。 */
+body.theme-mono{
+  --bg:#FAFAFA; --bg2:#F0F0F0; --paper-card:#FFFFFF;
+  --ink:#0A0A0A; --ink-soft:#767676; --accent:#0A0A0A; --accent-2:#EAEAEA;
+  --marker:#DCDCDC; --line:#D2D2D2; --on-accent:#FAFAFA; --on-accent-2:rgba(250,250,250,.8);
+  --radius:0px;
+}
+body.theme-mono #poster .title{font-weight:900; letter-spacing:-.03em;}
+body.theme-mono #memo .paper{box-shadow:none; border:4px solid var(--ink);}
+body.theme-mono #contrast .col.bad{background:#EDEDED; border-color:#B8B8B8;}
+body.theme-mono #contrast .col.good{background:#0A0A0A; border-color:#0A0A0A;}
+body.theme-mono #contrast .col.good .tag{color:#FAFAFA;}
+body.theme-mono #contrast .col.good p{color:#FAFAFA;}
+body.theme-mono #contrast .col.good small{color:rgba(250,250,250,.7);}
+
+/* ④ 弥散光 aura —— 柔和现代，适合情感、心理、疗愈类。
+      特征：多层径向渐变、毛玻璃卡片、大圆角。 */
+body.theme-aura{
+  --bg:#F2ECFA; --bg2:#EFE8F9; --paper-card:rgba(255,255,255,.66);
+  --ink:#241B39; --ink-soft:#655A80; --accent:#7B5AE0; --accent-2:#E6DDFB;
+  --marker:#D6C7FA; --line:#DED5F0; --on-accent:#FFFFFF; --on-accent-2:rgba(255,255,255,.85);
+  --radius:30px;
+}
+body.theme-aura,
+body.theme-aura.style-memo,
+body.theme-aura.style-quote,
+body.theme-aura.style-page-quote{
+  background:
+    radial-gradient(58% 42% at 14% 10%, #FFD3E6 0%, transparent 62%),
+    radial-gradient(54% 42% at 88% 20%, #C7DEFF 0%, transparent 64%),
+    radial-gradient(66% 48% at 52% 96%, #FFE7C4 0%, transparent 66%),
+    #F2ECFA;
+}
+body.theme-aura.style-poster{
+  background:linear-gradient(148deg,#8E6BEA 0%,#B78BE8 46%,#F0A6C4 100%);
+}
+body.theme-aura #memo .paper{
+  backdrop-filter:blur(22px); box-shadow:0 30px 70px rgba(90,64,150,.16);
+  border:2px solid rgba(255,255,255,.7);
+}
+
+/* ⑤ 涂鸦手账 doodle —— 亲和活泼，适合学生、日常、经历分享。
+      特征：奶油底、虚线框、荧光笔、圆润字形。 */
+body.theme-doodle{
+  --bg:#FFFAEC; --bg2:#FBF2D9; --paper-card:#FFFDF5;
+  --ink:#2C2620; --ink-soft:#6F6152; --accent:#EF6146; --accent-2:#FFE7A3;
+  --marker:#A9E39C; --line:#DBCFB2; --on-accent:#FFFDF5; --on-accent-2:rgba(255,253,245,.85);
+  --radius:22px;
+  --font-sans:"WenQuanYi Zen Hei","Noto Sans CJK SC",sans-serif;
+}
+body.theme-doodle .frame::before{
+  content:""; position:absolute; inset:44px; border:5px dashed rgba(44,38,32,.26);
+  border-radius:30px; pointer-events:none;
+}
+body.theme-doodle #memo .paper{transform:rotate(-.6deg);}
+
+/* ⑥ 水墨清雅 ink —— 沉静文气，适合心理、文化、人文类。
+      特征：宣纸色、衬线体、朱红印章。 */
+body.theme-ink{
+  --bg:#F4F1E8; --bg2:#ECE7DA; --paper-card:#FAF8F1;
+  --ink:#1E1C18; --ink-soft:#635D51; --accent:#A2312A; --accent-2:#E6E0D0;
+  --marker:#D9D1BC; --line:#CCC4B0; --on-accent:#F7F4EA; --on-accent-2:rgba(247,244,234,.82);
+  --radius:4px;
+  --font-sans:"Noto Serif CJK SC",serif;
+}
+body.theme-ink .frame::after{
+  content:""; position:absolute; right:90px; bottom:172px;
+  width:78px; height:78px; background:var(--accent); border-radius:5px; opacity:.88;
+}
+body.theme-ink #memo .paper{box-shadow:0 18px 46px rgba(60,50,32,.10);}
+
+/* ⑦ 高饱和撞色 pop —— 年轻张扬，适合观点、玩梗、态度类。
+      特征：撞色块、粗描边、硬阴影，视觉最跳。 */
+body.theme-pop{
+  --bg:#FFF4D6; --bg2:#FFE9B0; --paper-card:#FFFFFF;
+  --ink:#141414; --ink-soft:#4A4A4A; --accent:#2F4BE0; --accent-2:#FFD9E4;
+  --marker:#FFE24A; --line:#141414; --on-accent:#FFF4D6; --on-accent-2:rgba(255,244,214,.9);
+  --radius:18px;
+}
+body.theme-pop #memo .paper,
+body.theme-pop #contrast .col,
+body.theme-pop #page-point .note{
+  border:5px solid var(--ink); box-shadow:12px 12px 0 var(--ink);
+}
+body.theme-pop #checklist .kicker{border:4px solid var(--ink); box-shadow:6px 6px 0 var(--ink);}
+
+</style>
+</head>
+
+<!-- 改这里切换款式 ↓ -->
+<body class="style-poster">
+<div class="frame">
+
+  <!-- ① 大字报 -->
+  <section id="poster">
+    <div class="mid">
+      <div class="eyebrow">写给刚毕业的你</div>
+      <div class="title">别急着<span class="hl">找热爱</span><br>先把手弄脏</div>
+      <div class="sub">我走了三年弯路才想明白的一件事</div>
+    </div>
+    <div class="badge">@你的账号名</div>
+  </section>
+
+  <!-- ② 便签手账 -->
+  <section id="memo">
+    <div class="paper">
+      <div class="tape"></div>
+      <div class="date">2026 / 08 · 大三下</div>
+      <div class="title">从<u>双非一本</u>到<br>拿下第一个 offer</div>
+      <ul class="lines">
+        <li>投了 87 份简历</li>
+        <li>被拒到怀疑人生的第 41 天</li>
+        <li>真正起作用的只有 3 件事</li>
+      </ul>
+      <div class="sign">—— 记录一下，怕以后忘了</div>
+    </div>
+  </section>
+
+  <!-- ③ 清单目录 -->
+  <section id="checklist">
+    <div class="kicker">收藏这一篇就够</div>
+    <div class="title">情绪崩溃时<br><em>立刻能用</em>的 5 个方法</div>
+    <ol>
+      <li>先离开现场，哪怕只是去趟洗手间</li>
+      <li>把感觉说出口，而不是分析它</li>
+      <li>让身体先冷静：4-7-8 呼吸</li>
+      <li>写下来，不修饰</li>
+      <li>推迟所有决定 24 小时</li>
+    </ol>
+    <div class="foot">心理咨询师 · 从业 8 年</div>
+  </section>
+
+  <!-- ④ 语录 -->
+  <section id="quote">
+    <div class="mark">"</div>
+    <div class="text">你不是不够好，<br>你只是<span class="em">太早</span>把自己<br>交给别人评价了。</div>
+    <div class="from">写给那个总在道歉的你</div>
+  </section>
+
+  <!-- ⑤ 对比 -->
+  <section id="contrast">
+    <div class="title">同样是道歉<br>结果差了十万八千里</div>
+    <div class="cols">
+      <div class="col bad">
+        <div class="tag">❌ 越说越糟</div>
+        <p>"对不起，但我也是为你好"</p>
+        <small>"但是"之后的话，会抹掉前面所有的歉意</small>
+      </div>
+      <div class="col good">
+        <div class="tag">✅ 真的有用</div>
+        <p>"我知道我让你难受了"</p>
+        <small>先承认对方的感受，再谈自己的理由</small>
+      </div>
+    </div>
+    <div class="foot">亲密关系沟通 · 第 12 期</div>
+  </section>
+
+  <!-- ⑥ 照片 + 文字卡 -->
+  <section id="photocard">
+    <div class="photo"></div>
+    <div class="shade"></div>
+    <div class="top">上海 · 安福路</div>
+    <div class="card">
+      <div class="cat">周末去哪儿</div>
+      <div class="title">一个人也能<br>待一下午的书店</div>
+      <div class="sub">不用消费 · 有插座 · 靠窗位置最好</div>
+    </div>
+  </section>
+
+  <!-- ⑦ 内页 · 分点页 -->
+  <section id="page-point">
+    <div class="num">01</div>
+    <div class="h">招生官要的不是<span class="hl">大事</span><br>是"你"</div>
+    <div class="body">
+      <p>我写了三版关于社团领导力的，全被打回。</p>
+      <p>最后用的那版，写的是我连着两年帮新来的国际生翻译中文菜单——一件没人知道、也没写进活动列表的小事。</p>
+    </div>
+    <div class="note">💡 判断标准：这件事换个人做，还成不成立？<br>只有你能写出来的，才是你的素材。</div>
+    <div class="pager"><span>文书这件事</span><span>2 / 8</span></div>
+  </section>
+
+  <!-- ⑧ 内页 · 金句页 -->
+  <section id="page-quote">
+    <div class="big">你反复在意的事<br>就是你<span class="em">真正在意</span>的事</div>
+    <div class="sub">素材不在回忆里，在你的日常吐槽里</div>
+  </section>
+
+  <!-- ⑨ 内页 · 结尾页 -->
+  <section id="page-end">
+    <div class="cap">写在最后</div>
+    <div class="sum">卡住的那三周<br>不算浪费</div>
+    <ul class="list">
+      <li>招生官要的不是大事，是你</li>
+      <li>素材在日常吐槽里</li>
+      <li>先写烂的，再写对的</li>
+    </ul>
+    <div class="ask">你现在卡在哪一步？<br>评论区说说，我们互相打个气 🌱</div>
+    <div class="who">@一个申请中的高中生 · 记录美本申请全过程</div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "rednote-skills",
+  "description": "VeraQ 的小红书 / RedNote 内容创作插件市场",
+  "version": "0.1.0",
+  "owner": {
+    "name": "VeraQ"
+  },
+  "plugins": [
+    {
+      "name": "rednote-personal-ip",
+      "source": "./plugins/rednote-personal-ip",
+      "description": "小红书 / RedNote 个人 IP 内容工作台：人设定位、文案、封面、声音档案、发布合规和数据诊断。",
+      "version": "0.1.0",
+      "author": {
+        "name": "VeraQ"
+      },
+      "license": "MIT",
+      "category": "marketing",
+      "keywords": [
+        "小红书",
+        "rednote",
+        "xiaohongshu",
+        "个人IP",
+        "封面",
+        "文案",
+        "涨粉",
+        "博主"
+      ]
+    }
+  ]
+}
