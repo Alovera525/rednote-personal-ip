@@ -1,15 +1,17 @@
 ---
 name: xhs-cover
-description: Create RedNote or Xiaohongshu cover images and carousel pages using 9 layouts and 7 visual themes. Use when the user invokes /xhs-cover or asks for 小红书封面, 轮播内页, 封面排版, 视觉主题, HTML-to-PNG rendering, or an image-generation prompt for an atmospheric cover.
+description: Create RedNote or Xiaohongshu cover images and carousel pages using 9 layouts and 7 visual themes. Use only when the user invokes /xhs-cover, explicitly asks for a cover, carousel pages, visual layout, HTML-to-PNG rendering, or confirms they want visual production after copy is complete. Do not activate merely because a post may eventually need a cover.
 ---
 
 # 小红书封面
 
-只处理封面和轮播视觉，不附赠整篇正文。开始前读取 `${CLAUDE_PLUGIN_ROOT}/references/covers.md`；需要模板时使用 `${CLAUDE_PLUGIN_ROOT}/assets/covers.html`。
+插件资源路径：Claude Code 使用 `${CLAUDE_PLUGIN_ROOT}` 作为插件根目录；Codex 从本 `SKILL.md` 向上两级得到插件根目录。以下资源路径均相对插件根目录。
+
+只处理封面和轮播视觉，不附赠整篇正文。只有用户已经明确提出或确认视觉需求时才开始，并读取 `references/covers.md`；需要模板时使用 `assets/covers.html`。
 
 ## 工作流
 
-1. 复用用户已经提供的标题、照片、账号定位和视觉偏好，不重复提问。
+1. 复用已经确认的标题、文案、照片、账号定位和视觉偏好，不重新跑文案流程，也不重复提问。
 2. 信息不足时，一次问清：封面文字、账号类型、是否有照片、是否已有固定主题。
 3. 首次做图时让用户从实际预览中选择一套 `theme-*`；主题是账号长期视觉，不要每条更换。
 4. 按内容选择 `style-*`。版式可以每条更换，但不要为了展示能力一次交付多套用户没要的方案。

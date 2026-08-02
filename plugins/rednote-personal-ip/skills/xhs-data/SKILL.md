@@ -5,7 +5,9 @@ description: Diagnose RedNote or Xiaohongshu post performance through a four-sta
 
 # 小红书数据诊断
 
-读取 `${CLAUDE_PLUGIN_ROOT}/references/growth.md`，只修改真正掉下去的环节，不在正常环节上乱给建议。
+插件资源路径：Claude Code 使用 `${CLAUDE_PLUGIN_ROOT}` 作为插件根目录；Codex 从本 `SKILL.md` 向上两级得到插件根目录。以下资源路径均相对插件根目录。
+
+读取 `references/growth.md`，只修改真正掉下去的环节，不在正常环节上乱给建议。
 
 ## 所需数据
 

@@ -4,26 +4,26 @@
 
 它不是一套“万能爆款句式”。它把创作拆成可以重复执行的判断流程：先理解账号和用户手里的素材，再决定发布类型、内容形态、文案和视觉；发布后只改数据真正掉下去的环节。
 
-> 当前版本：`0.1.0` · 作者：VeraQ · 许可证：MIT
+> 当前版本：`0.1.1` · 作者：VeraQ · 许可证：MIT
 
 ## 功能入口
 
-安装为 Claude Code Plugin 后，Skill 会带上 `rednote-personal-ip:` 命名空间。
+同一套 Skill 同时供 Claude Code 与 Codex 使用。Claude Code 会为 Marketplace Skill 加上 `rednote-personal-ip:` 命名空间；Codex 可以通过已安装的 Plugin 或自然语言选择对应流程。
 
-| Skill | Marketplace 中的实际命令 | 做什么 |
+| Skill | Claude Marketplace 实际命令 | 做什么 |
 |---|---|---|
 | `/xhs` | `/rednote-personal-ip:xhs` | 主入口；询问本次目标并分诊 |
-| `/xhs-post` | `/rednote-personal-ip:xhs-post` | 从零做一条完整笔记，走七步流程 |
+| `/xhs-post` | `/rednote-personal-ip:xhs-post` | 先做标题、正文、hashtags，再确认是否继续封面 |
 | `/xhs-cover` | `/rednote-personal-ip:xhs-cover` | 只做封面：9 款版式 × 7 套风格主题 |
 | `/xhs-voice` | `/rednote-personal-ip:xhs-voice` | 建立或更新声音档案，让笔记更像本人 |
 | `/xhs-check` | `/rednote-personal-ip:xhs-check` | 发布前合规与去 AI 腔检查 |
 | `/xhs-data` | `/rednote-personal-ip:xhs-data` | 用四段诊断判断下一条应该改什么 |
 
-不使用快捷命令也可以直接说需求。Claude 会根据各 Skill 的描述自动选择对应流程。
+不使用快捷命令也可以直接说需求。Claude Code 与 Codex 都可以根据各 Skill 的描述选择对应流程。
 
 ## 七步工作流
 
-完整笔记由 `/rednote-personal-ip:xhs-post` 执行：
+完整笔记由 `/rednote-personal-ip:xhs-post` 分阶段执行：先交付文案，再确认是否需要封面。第 4 步可以跳过出图，但不能结束七步流程；无论是否做图，都继续自检，用户后续提供改稿时继续回流声音档案。
 
 | 步骤 | 做什么 | 关键判断 |
 |---|---|---|
@@ -31,9 +31,9 @@
 | 1 · 接素材 | 先确认用户已有话题、草稿或照片 | 有素材就在原材料上改，不另起炉灶 |
 | 2 · 定形态 | 先定发布入口，再定内容形态 | 普通图文、想法和长文的限制不同 |
 | 3 · 文案 | 标题、正文、标签、评论区引导 | 内容骨架与用户声音同时生效 |
-| 4 · 出图 | 选择固定主题与本次版式 | 中文文字由模板排版，不交给图片模型生成 |
-| 5 · 自检 | 检查限制、合规、可读性和真实性 | 图片里的文字也要一起检查 |
-| 6 · 回流 | 从用户改稿中提取新偏好 | 每条规则经用户确认后才写入声音档案 |
+| 4 · 封面分支 | 询问是否继续制作封面 | 不需要时只跳过出图，流程继续 |
+| 5 · 自检 | 检查限制、合规、可读性和真实性 | 始终执行；有图时增加视觉检查 |
+| 6 · 回流 | 从用户后续改稿中提取新偏好 | 收到改稿即触发，经确认后写入声音档案 |
 
 ## 核心能力
 
@@ -68,7 +68,7 @@
 
 ## 安装
 
-### Claude Code Plugin Marketplace
+### Claude Code
 
 ```bash
 claude plugin marketplace add Alovera525/rednote-personal-ip
@@ -85,12 +85,37 @@ claude plugin install rednote-personal-ip@rednote-skills
 
 Claude Code 会给 Marketplace Plugin 的 Skill 加命名空间，因此实际命令不是裸 `/xhs-post`，而是 `/rednote-personal-ip:xhs-post`。这可以防止不同插件里的同名 Skill 冲突。
 
+第三方 Marketplace 默认不会自动更新。首次安装后运行 `/plugin`，进入 **Marketplaces → rednote-skills**，选择 **Enable auto-update**。之后 Claude Code 会在启动时刷新 Marketplace；版本变化时自动更新已安装插件，并提示运行 `/reload-plugins`。
+
+### Codex
+
+```bash
+codex plugin marketplace add Alovera525/rednote-personal-ip --ref main
+codex plugin add rednote-personal-ip@rednote-skills
+```
+
+安装后开启一个新的 Codex 任务，再直接描述需求或明确选择 Plugin，例如：
+
+```text
+@rednote-personal-ip 先帮我写标题、正文和 hashtags，不生成图片
+@rednote-personal-ip 检查这条笔记的合规风险和 AI 腔
+```
+
+Codex 的 Git Marketplace 当前需要手动刷新快照并重新安装最新版本：
+
+```bash
+codex plugin marketplace upgrade rednote-skills
+codex plugin add rednote-personal-ip@rednote-skills
+```
+
 ## 使用示例
 
 ```text
 我想做一个面向新手妈妈的心理科普账号，先帮我定定位。
 
 这是一段我写的草稿，不要重写，只帮我调整结构和标题。
+
+帮我做一条完整笔记，先完成文案；文案确认后再问我要不要做封面。
 
 /rednote-personal-ip:xhs-cover
 给这条清单型笔记做一张封面，沿用上次的视觉主题。
@@ -106,11 +131,19 @@ Claude Code 会给 Marketplace Plugin 的 Skill 加命名空间，因此实际�
 
 ```text
 rednote-personal-ip/
+├── .agents/
+│   └── plugins/
+│       └── marketplace.json
 ├── .claude-plugin/
 │   └── marketplace.json
+├── .github/
+│   └── workflows/
+│       └── validate-version.yml
 ├── plugins/
 │   └── rednote-personal-ip/
 │       ├── .claude-plugin/
+│       │   └── plugin.json
+│       ├── .codex-plugin/
 │       │   └── plugin.json
 │       ├── skills/
 │       │   ├── xhs/
@@ -126,6 +159,8 @@ rednote-personal-ip/
 │       │   └── covers.md
 │       └── assets/
 │           └── covers.html
+├── scripts/
+│   └── version.mjs
 ├── README.md
 └── LICENSE
 ```
@@ -152,7 +187,21 @@ Skill 可能在当前工作目录读取或创建 `ip-profile.md` 与 `voice-prof
 
 ## 更新
 
-Marketplace 刷新后，在 Claude Code 的 `/plugin` 界面更新已安装插件。由于 manifest 固定了 `0.1.0`，每次正式发布都需要同步提升 `plugin.json` 与 `marketplace.json` 的版本号。
+### 用户更新
+
+- **Claude Code**：为 `rednote-skills` 开启一次 auto-update 后，启动时会检查版本变化并自动更新。
+- **Codex Git Marketplace**：运行 `codex plugin marketplace upgrade rednote-skills`，再运行 `codex plugin add rednote-personal-ip@rednote-skills`。当前 Codex CLI 没有第三方 Git Marketplace 的后台自动更新开关。
+
+### 发布新版本
+
+每次正式更新默认将 patch 版本精确增加 1，例如 `0.1.1 → 0.1.2`：
+
+```bash
+node scripts/version.mjs bump
+node scripts/version.mjs check
+```
+
+`bump` 会同步修改 Claude Marketplace、Claude manifest、Codex manifest 和 README。GitHub Actions 会在 Skill、reference、asset、Marketplace 或 manifest 发生变化时检查版本是否恰好增加一个 patch；版本未增加、不同步或跳号都会失败。
 
 ## 贡献
 

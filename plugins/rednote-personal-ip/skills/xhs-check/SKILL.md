@@ -5,7 +5,9 @@ description: Run a pre-publish RedNote or Xiaohongshu review for platform limits
 
 # 小红书发布前检查
 
-读取 `${CLAUDE_PLUGIN_ROOT}/references/copywriting.md`，检查用户实际提供的标题、正文、标签和图片文字。只报告能从材料中观察到的问题，不虚构平台判定或保证流量结果。
+插件资源路径：Claude Code 使用 `${CLAUDE_PLUGIN_ROOT}` 作为插件根目录；Codex 从本 `SKILL.md` 向上两级得到插件根目录。以下资源路径均相对插件根目录。
+
+读取 `references/copywriting.md`，检查用户实际提供的标题、正文、标签和图片文字。只报告能从材料中观察到的问题，不虚构平台判定或保证流量结果。
 
 ## 检查顺序
 

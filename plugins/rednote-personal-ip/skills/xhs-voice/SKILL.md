@@ -5,7 +5,9 @@ description: Build or update a RedNote creator voice profile so generated posts 
 
 # 小红书声音档案
 
-读取 `${CLAUDE_PLUGIN_ROOT}/references/voice.md`，只记录可观察、可执行的语言特征。
+插件资源路径：Claude Code 使用 `${CLAUDE_PLUGIN_ROOT}` 作为插件根目录；Codex 从本 `SKILL.md` 向上两级得到插件根目录。以下资源路径均相对插件根目录。
+
+读取 `references/voice.md`，只记录可观察、可执行的语言特征。
 
 ## 新建档案
 

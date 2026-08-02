@@ -63,7 +63,7 @@
 
 ## 6 种款式怎么选
 
-模板都在 `${CLAUDE_PLUGIN_ROOT}/assets/covers.html`，改 `<body>` 的 class 切换。
+模板位于插件根目录的 `assets/covers.html`，改 `<body>` 的 class 切换。
 
 | class | 款式 | 适合 | 气质 |
 |---|---|---|---|
@@ -144,7 +144,7 @@ apt-get install -y fonts-lxgw-wenkai   # 霞鹜文楷，文艺/手账风最好�
 from playwright.sync_api import sync_playwright
 from pathlib import Path
 
-HTML  = Path("${CLAUDE_PLUGIN_ROOT}/assets/covers.html").resolve()   # 改成实际路径
+HTML  = Path("<plugin-root>/assets/covers.html").resolve()          # 替换为实际插件根目录
 STYLE = "style-poster"                          # 要渲染的款式
 OUT   = "cover.png"
 

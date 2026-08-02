@@ -1,0 +1,40 @@
+{
+  "name": "rednote-personal-ip",
+  "version": "0.1.1",
+  "description": "小红书 / RedNote 个人 IP 内容工作台：人设定位、文案、封面、声音档案、发布合规和数据诊断。",
+  "author": {
+    "name": "VeraQ",
+    "url": "https://github.com/Alovera525"
+  },
+  "homepage": "https://github.com/Alovera525/rednote-personal-ip#readme",
+  "repository": "https://github.com/Alovera525/rednote-personal-ip",
+  "license": "MIT",
+  "keywords": [
+    "小红书",
+    "rednote",
+    "xiaohongshu",
+    "个人IP",
+    "封面",
+    "文案",
+    "涨粉",
+    "博主"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "RedNote Personal IP",
+    "shortDescription": "小红书个人 IP 内容工作台",
+    "longDescription": "从人设定位、完整笔记和封面制作，到声音档案、发布前检查与发布后数据诊断。",
+    "developerName": "VeraQ",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/Alovera525/rednote-personal-ip",
+    "defaultPrompt": [
+      "先帮我写一条小红书笔记的标题、正文和 hashtags，不生成图片。",
+      "文案确认了，继续为这条笔记制作小红书封面。",
+      "检查这条笔记的合规风险和 AI 腔。"
+    ]
+  }
+}
