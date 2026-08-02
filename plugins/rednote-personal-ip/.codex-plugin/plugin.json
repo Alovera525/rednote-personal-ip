@@ -1,6 +1,6 @@
 {
   "name": "rednote-personal-ip",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "小红书 / RedNote 个人 IP 内容工作台：人设定位、文案、封面、声音档案、发布合规和数据诊断。",
   "author": {
     "name": "VeraQ",
@@ -32,7 +32,8 @@
     ],
     "websiteURL": "https://github.com/Alovera525/rednote-personal-ip",
     "defaultPrompt": [
-      "先给我一张快速创作卡：推荐个人 IP 风格、本篇表达方式和两个风格落点；我确认后再写标题、正文和 hashtags，不生成图片。",
+      "我是从零起号：请先让我选择个人 IP 风格、文章口气和交付格式，再写标题、正文和 hashtags，不生成图片。",
+      "这是我的 1–3 篇爆帖：请先提炼并让我确认账号风格、文章口气和交付格式，再写新笔记。",
       "文案确认了，继续为这条笔记制作小红书封面。",
       "检查这条笔记的合规风险和 AI 腔。"
     ]
