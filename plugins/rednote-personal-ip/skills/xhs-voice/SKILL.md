@@ -3,18 +3,18 @@ name: xhs-voice
 description: Select, build, or update a RedNote creator voice profile using cross-industry personal-IP style archetypes and ongoing text feedback. Use when the user invokes /xhs-voice, asks what writing style suits their industry, wants to choose a 个人IP风格, says 改成我的语气 or 这不像我说话, provides writing samples, chooses among copy variants, or returns an edited draft whose differences should improve future writing.
 ---
 
-# 小红书声音档案
+# 小红书声音档案（深度建档）
 
 插件资源路径：Claude Code 使用 `${CLAUDE_PLUGIN_ROOT}` 作为插件根目录；Codex 从本 `SKILL.md` 向上两级得到插件根目录。以下资源路径均相对插件根目录。
 
-读取 `references/voice.md` 和 `references/style-archetypes.md`。风格母型用于快速建立起点，用户后续选择、反馈和改稿用于把它校准成本人的声音。只记录可观察、可执行的特征，不模仿具体博主。
+读取 `references/voice.md` 和 `references/style-archetypes.md`。这里是深度建档路径：完整选择主 / 辅助 / 不要风格、样稿校准与长期保存都在此完成；普通 `/xhs-post` 默认只用一张快速创作卡。只记录可观察、可执行的特征，不模仿具体博主。
 
 ## 新建档案
 
 1. 一次问清行业 / 身份、目标读者和明确不喜欢的表达；用户说“你帮我选”时直接推荐。
 2. 根据行业映射只展示 4–6 张风格卡，让用户选 **1 个主风格 + 0–1 个辅助风格 + 1 个明确不要的风格**。
-3. 围绕同一主题生成 3 段 80–120 字的校准样稿，让用户选最像自己的版本；记录选择原因。
-4. 生成风格 DNA：与读者的关系、情绪温度、叙事视角、证据偏好、最多两个标志动作、禁用词和禁用句式。
+3. 围绕同一主题生成 3 段 80–120 字的校准样稿，让用户选最像自己的版本；记录选择原因。也可直接先建立暂定档案，不让校准样稿卡住创作。
+4. 生成风格 DNA：与读者的关系、情绪温度、叙事视角、证据偏好、最多两个标志动作、禁用词和禁用句式；再建立微习惯栏（问句、句尾语气词、标点、emoji / 颜文字、开头 / 结尾习惯等）。
 5. 自然语料改为可选增强项。用户愿意提供时，可用微信长消息、朋友圈、群聊、语音转文字或本人满意的旧笔记继续校准；不要强制要求 3–5 段。
 6. 用户同意长期保存后再创建声音档案。IP 定位档案与声音档案分开；没有项目记忆工具时，写入当前工作目录的 `voice-profile.md`。
 
@@ -24,8 +24,8 @@ description: Select, build, or update a RedNote creator voice profile using cros
 
 1. 收集本轮的风格选择、标题 / 样稿选择、明确反馈和改稿差异；没有制作图片也要执行。
 2. 用户主动选择或明确说出的偏好，写入“已确认偏好”；跨不同主题重复三次后才升为稳定规则。
-3. 从改稿或普通聊天推断的偏好，先问“这条要不要固化下来？”，确认后再写入。
+3. 从改稿推断的偏好，先问“这条要不要固化下来？”，确认后再写入；普通聊天中的习惯只记入“待观察”，未经确认不得用于公开文案。
 4. 把每条偏好改写成可执行规则并给出对应例句；保留适用语境。
 5. 新规则与旧规则冲突时保留例外，不要为了统一而抹掉差异。
 
-最终交付声音档案本身，以及本次新增或调整的规则摘要；不要顺手生成新笔记。用户没有授权保存时，只在对话里展示暂定风格 DNA。
+最终交付声音档案本身，以及本次新增或调整的规则摘要；不要顺手生成新笔记。用户没有授权保存时，只在对话里展示暂定风格 DNA。提醒用户：本篇“干货拆解 / 真实故事 / 观点表达 / 复盘日记 / 清单测评”是单篇结构选择，不写入长期声音档案。
